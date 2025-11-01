@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
-import {Button} from "./ui/button";
+import { Button } from "./ui/button";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-md">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
+        <div
+          className="flex items-center space-x-2 cursor-pointer"
+          onClick={() => (window.location.href = "/")}
+        >
           <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-xl">DF</span>
           </div>
@@ -18,16 +24,24 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#home" className="text-gray-700 hover:text-blue-600 font-medium">
+          <a
+            href={location.pathname === "/" ? "#home" : "/#home"}
+            className="text-gray-700 hover:text-blue-600 font-medium"
+          >
             Home
           </a>
-          <a href="#about" className="text-gray-700 hover:text-blue-600 font-medium">
+          <a
+            href={location.pathname === "/" ? "#about" : "/#about"}
+            className="text-gray-700 hover:text-blue-600 font-medium"
+          >
             About
           </a>
-          <a href="#contact" className="text-gray-700 hover:text-blue-600 font-medium">
+          <a
+            href={location.pathname === "/" ? "#contact" : "/#contact"}
+            className="text-gray-700 hover:text-blue-600 font-medium"
+          >
             Contact
           </a>
-          
         </div>
 
         {/* Desktop Auth Buttons */}
@@ -41,7 +55,10 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-gray-700" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button
+          className="md:hidden text-gray-700"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -49,18 +66,28 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden px-4 pb-4 flex flex-col space-y-2">
-          <a href="#home" className="text-gray-700 hover:text-blue-600 font-medium" onClick={() => setIsMenuOpen(false)}>
+          <a
+            href={location.pathname === "/" ? "#home" : "/#home"}
+            className="text-gray-700 hover:text-blue-600 font-medium"
+            onClick={() => setIsMenuOpen(false)}
+          >
             Home
           </a>
-          <a href="#about" className="text-gray-700 hover:text-blue-600 font-medium" onClick={() => setIsMenuOpen(false)}>
+          <a
+            href={location.pathname === "/" ? "#about" : "/#about"}
+            className="text-gray-700 hover:text-blue-600 font-medium"
+            onClick={() => setIsMenuOpen(false)}
+          >
             About
           </a>
-          <a href="#contact" className="text-gray-700 hover:text-blue-600 font-medium" onClick={() => setIsMenuOpen(false)}>
+          <a
+            href={location.pathname === "/" ? "#contact" : "/#contact"}
+            className="text-gray-700 hover:text-blue-600 font-medium"
+            onClick={() => setIsMenuOpen(false)}
+          >
             Contact
           </a>
-          <a href="#contact" className="text-gray-700 hover:text-blue-600 font-medium" onClick={() => setIsMenuOpen(false)}>
-            Footer
-          </a>
+
           <div className="flex flex-col space-y-2 pt-2">
             <Button className="border border-blue-600 text-blue-600 hover:bg-blue-100 w-full">
               Donor Login

@@ -1,6 +1,9 @@
 import { Facebook, Instagram, Twitter } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
+
   return (
     <footer
       id="contact"
@@ -19,28 +22,31 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-gray-600 text-base leading-relaxed">
-              Empowering change through student giving. Together, we build brighter futures for every learner.
+              Empowering change through student giving. Together, we build
+              brighter futures for every learner.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-5">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-5">
+              Quick Links
+            </h3>
             <div className="flex flex-col space-y-3">
               <a
-                href="#home"
-                className="text-gray-600 from:hover:text-blue-600 to-white-500 font-medium transition-all duration-200"
+                href={location.pathname === "/" ? "#home" : "/#home"}
+                className="text-gray-600 hover:text-blue-600 font-medium transition-all duration-200"
               >
                 Home
               </a>
               <a
-                href="#about"
+                href={location.pathname === "/" ? "#about" : "/#about"}
                 className="text-gray-600 hover:text-blue-600 font-medium transition-all duration-200"
               >
                 About
               </a>
               <a
-                href="#contact"
+                href={location.pathname === "/" ? "#contact" : "/#contact"}
                 className="text-gray-600 hover:text-blue-600 font-medium transition-all duration-200"
               >
                 Contact Us
@@ -50,16 +56,23 @@ const Footer = () => {
 
           {/* Social Media */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-5">Connect With Us</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-5">
+              Connect With Us
+            </h3>
             <div className="flex space-x-5">
               {[Facebook, Instagram, Twitter].map((Icon, index) => (
                 <a
                   key={index}
                   href="#"
-                  className="w-11 h-11 bg-blue-100 rounded-xl flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-500 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                  className="group w-11 h-11 bg-blue-100 rounded-xl flex items-center justify-center 
+                   hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-500 
+                   transition-all duration-300 shadow-sm hover:shadow-md"
                   aria-label={Icon.name}
                 >
-                  <Icon size={22} className="text-blue-600" />
+                  <Icon
+                    size={22}
+                    className="text-blue-600 group-hover:text-white transition-colors duration-300"
+                  />
                 </a>
               ))}
             </div>
@@ -70,7 +83,8 @@ const Footer = () => {
         <div className="border-t border-blue-100 pt-8 text-center">
           <p className="text-sm text-gray-500">
             © {new Date().getFullYear()}{" "}
-            <span className="font-semibold text-blue-600">DonateFlow</span>. All rights reserved.
+            <span className="font-semibold text-blue-600">DonateFlow</span>. All
+            rights reserved.
             <br />
             Built with ❤️ to empower students and transform communities.
           </p>
