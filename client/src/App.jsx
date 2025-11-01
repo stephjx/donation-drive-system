@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPage />} />   {/* 👈 this is required */}
+        <Route path="/" element={<LandingPage />} />   
         <Route path="/donation-drives" element={<DonationDrives />} />
         <Route path="/create-drive" element={<CreateDrive />} />
       </Routes>
